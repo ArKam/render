@@ -1,0 +1,3 @@
+import panels
+
+dir(panels)
