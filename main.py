@@ -21,12 +21,13 @@ class Render(object):
                 self.screen.refresh()
                 self.dynamic = __import__("panels.{0}.{1}".format(panel, view))
             else:
-                __import__("panels.%s" % __default_panel)
+                self.default = __import__("panels.%s" % __default_panel)
+                self.default.__default_panel.__default_panel.display() # Need to be cleaned.
         except ImportError:
             raise
 
 if __name__ == '__main__':
-""" Exemple simple de création d'une fenetre principale et d'appel d'une sous fenetre. """
+""" Simple example of main windows rendering with a named subwindow. """
     while 1:
         render = Render(" GENERIC WIZARD ")
         render.panel('infos.terminal') # Call the terminal view from the infos panel package.
